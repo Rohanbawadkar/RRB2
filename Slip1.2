@@ -1,0 +1,33 @@
+import numpy as np
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+
+# Create the dataset
+data = {'Position': ['Junior', 'Senior', 'Manager', 'Director', 'Executive'],
+        'Salary': [50000, 80000, 120000, 180000, 250000]}
+df = pd.DataFrame(data)
+
+# Identify independent and target variable
+X = df[['Position']]
+y = df['Salary']
+
+# Split the dataset into training and testing sets (7:3 ratio)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+# Print the training and testing sets
+print("Training set:")
+print(X_train)
+print(y_train)
+print("\nTesting set:")
+print(X_test)
+print(y_test)
+
+# Build a simple linear regression model
+model = LinearRegression()
+model.fit(X_train, y_train)
+
+# Predict on the testing set
+y_pred = model.predict(X_test)
+print("\nPredictions on the testing set:")
+print(y_pred)
